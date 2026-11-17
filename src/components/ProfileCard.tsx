@@ -2,19 +2,19 @@ import type { CSSProperties } from "react";
 import { ViewTransition } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { cardAspect } from "@/lib/masonry";
 import type { Profile } from "@/lib/types";
 import { MaterialIcon } from "./Icons";
-
-// Different heights give the masonry grid its rhythm; the pattern repeats along the list.
-const RATIOS = ["4 / 4.6", "4 / 5.8", "1 / 1", "4 / 5.2", "5 / 5", "4 / 6", "1 / 1.1", "4 / 4.8", "5 / 5.6", "4 / 5.4"];
 
 interface Props {
   profile: Profile;
   index: number;
   categoryLabel: string;
+  /** Whether this card starts a new column at 2, 3 and 4 columns (see lib/masonry). */
+  startsColumn: { two: boolean; three: boolean; four: boolean };
 }
 
-export default function ProfileCard({ profile, index, categoryLabel }: Props) {
+export default function ProfileCard({ profile, index, categoryLabel, startsColumn }: Props) {
   const style = {
     "--card-bg": profile.theme.surfaceContainerHigh,
     "--i": index,
@@ -25,12 +25,15 @@ export default function ProfileCard({ profile, index, categoryLabel }: Props) {
       href={`/perfil/${profile.slug}`}
       className="card"
       data-ar={profile.photo.width / profile.photo.height}
+      data-col2={startsColumn.two ? "" : undefined}
+      data-col3={startsColumn.three ? "" : undefined}
+      data-col4={startsColumn.four ? "" : undefined}
       style={style}
       aria-label={`Ver perfil de ${profile.name}`}
       transitionTypes={["nav-forward"]}
     >
       <ViewTransition name={`perfil-${profile.slug}`} share="morph" default="none">
-        <div className="card__media" style={{ aspectRatio: RATIOS[index % RATIOS.length] }}>
+        <div className="card__media" style={{ aspectRatio: cardAspect(index) }}>
           <Image
             className="card__img"
             src={profile.photo.src}

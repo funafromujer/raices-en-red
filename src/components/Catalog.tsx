@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { categories, categoryLabel } from "@/lib/profiles";
+import { columnStarts } from "@/lib/masonry";
 import { observeReveal, supportsScrollTimeline } from "@/lib/scroll-reveal";
 import { useShuffled } from "@/lib/shuffle";
 import { setPhotoRegion } from "@/lib/vt-region";
@@ -30,6 +31,12 @@ export default function Catalog({ profiles }: { profiles: Profile[] }) {
   // Random order per page load, so every profile has the same chance of appearing first.
   const ordered = useShuffled(profiles);
   const visible = filter === "todas" ? ordered : ordered.filter((p) => p.category === filter);
+  // Consecutive groups per column count (2 / 3 / 4), balanced by height, last two cards together.
+  const starts = {
+    two: new Set(columnStarts(visible.length, 2, 170)),
+    three: new Set(columnStarts(visible.length, 3, 250)),
+    four: new Set(columnStarts(visible.length, 4, 300)),
+  };
 
   // Coming back from a profile: put the catalog at the scroll position it had, in the same
   // commit as the navigation, so the card is already where the page will shrink to.
@@ -92,7 +99,13 @@ export default function Catalog({ profiles }: { profiles: Profile[] }) {
 
         <div className="grid" key={filter} ref={gridRef} data-swap={swapped ? "" : undefined} onClickCapture={markFromCatalog}>
           {visible.map((p, i) => (
-            <ProfileCard key={p.slug} profile={p} index={i} categoryLabel={categoryLabel(p.category)} />
+            <ProfileCard
+              key={p.slug}
+              profile={p}
+              index={i}
+              categoryLabel={categoryLabel(p.category)}
+              startsColumn={{ two: starts.two.has(i), three: starts.three.has(i), four: starts.four.has(i) }}
+            />
           ))}
         </div>
       </div>

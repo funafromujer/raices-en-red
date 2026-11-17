@@ -720,6 +720,23 @@ em {
     column-count: 4;
   }
 }
+/* The first card of each column starts it (computed in lib/masonry so columns are even and the
+   last two cards stay together). */
+@media (max-width: 799px) {
+  .card[data-col2] {
+    break-before: column;
+  }
+}
+@media (min-width: 800px) and (max-width: 1199px) {
+  .card[data-col3] {
+    break-before: column;
+  }
+}
+@media (min-width: 1200px) {
+  .card[data-col4] {
+    break-before: column;
+  }
+}
 
 .card {
   display: block;
