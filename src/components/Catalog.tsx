@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { categories, categoryLabel } from "@/lib/profiles";
+import { categoryLabel } from "@/lib/profiles";
 import { columnStarts } from "@/lib/masonry";
 import { observeReveal, supportsScrollTimeline } from "@/lib/scroll-reveal";
 import { useShuffled } from "@/lib/shuffle";
 import { setPhotoRegion } from "@/lib/vt-region";
 import type { CategoryId, Profile } from "@/lib/types";
 import { FROM_CATALOG_KEY, RESTORE_SCROLL_KEY } from "./BackButton";
-import { MaterialIcon } from "./Icons";
+import CategoryChips from "./CategoryChips";
 import ProfileCard from "./ProfileCard";
 import Reveal from "./Reveal";
 
@@ -75,26 +75,7 @@ export default function Catalog({ profiles }: { profiles: Profile[] }) {
         </Reveal>
 
         <Reveal delay={80}>
-          <div className="chips" role="tablist" aria-label="Filtrar por categoría">
-            {categories.map((c) => (
-              <button
-                key={c.id}
-                type="button"
-                role="tab"
-                aria-selected={filter === c.id}
-                className={`chip${filter === c.id ? " is-active" : ""}`}
-                onClick={() => select(c.id)}
-              >
-                <span className="chip__check" aria-hidden="true">
-                  <MaterialIcon name="check" />
-                </span>
-                {c.label}
-              </button>
-            ))}
-            <span className="chips__count" aria-live="polite">
-              {visible.length} {visible.length === 1 ? "perfil" : "perfiles"}
-            </span>
-          </div>
+          <CategoryChips filter={filter} onSelect={select} count={visible.length} />
         </Reveal>
 
         <div className="grid" key={filter} ref={gridRef} data-swap={swapped ? "" : undefined} onClickCapture={markFromCatalog}>

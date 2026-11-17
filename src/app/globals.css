@@ -636,11 +636,49 @@ em {
   color: var(--color-primary);
 }
 
+.chips-wrap {
+  position: relative;
+  margin: 0 -20px 30px;
+}
+/* Scroll controls: only shown on the side where the row can still scroll. */
+.chips-wrap .chips-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  background: var(--md-surface);
+  box-shadow: inset 0 0 0 1px var(--md-outline-variant);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) scale(0.6);
+  transition:
+    opacity var(--dur-short) var(--ease-standard),
+    transform var(--dur-medium) var(--ease-spring),
+    border-radius var(--dur-medium) var(--ease-spring);
+}
+.chips-wrap .chips-nav .material-icon {
+  font-size: 1.5em;
+}
+.chips-wrap .chips-nav--prev {
+  left: 6px;
+}
+.chips-wrap .chips-nav--next {
+  right: 6px;
+}
+.chips-wrap .chips-nav.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%);
+}
+.chips-wrap .chips-nav.is-visible:active {
+  transform: translateY(-50%) scale(0.9);
+}
 .chips {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin: 0 -20px 30px;
+  margin: 0;
   padding: 4px 20px;
   overflow-x: auto;
   scrollbar-width: none;
