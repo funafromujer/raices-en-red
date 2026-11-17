@@ -5,6 +5,9 @@ import Link from "next/link";
 import type { Profile } from "@/lib/types";
 import { MaterialIcon } from "./Icons";
 
+// Different heights give the masonry grid its rhythm; the pattern repeats along the list.
+const RATIOS = ["4 / 4.6", "4 / 5.8", "1 / 1", "4 / 5.2", "5 / 5", "4 / 6", "1 / 1.1", "4 / 4.8", "5 / 5.6", "4 / 5.4"];
+
 interface Props {
   profile: Profile;
   index: number;
@@ -27,7 +30,7 @@ export default function ProfileCard({ profile, index, categoryLabel }: Props) {
       transitionTypes={["nav-forward"]}
     >
       <ViewTransition name={`perfil-${profile.slug}`} share="morph" default="none">
-        <div className="card__media">
+        <div className="card__media" style={{ aspectRatio: RATIOS[index % RATIOS.length] }}>
           <Image
             className="card__img"
             src={profile.photo.src}
