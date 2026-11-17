@@ -1,0 +1,412 @@
+[
+  {
+    "slug": "amalfi-cuenca",
+    "name": "Amalfi Cuenca",
+    "category": "saberes",
+    "tagline": "Cuidar, acompañar y estar para otros",
+    "role": "Enfermera de formación",
+    "story": "A sus 57 años, Amalfi ha hecho del servicio a los demás una parte importante de su vida. Aunque hoy no ejerce como enfermera, su formación y su calidad humana siguen presentes en la forma en que acompaña a quienes la rodean.",
+    "activity": "Acompañamiento y solidaridad comunitaria: escuchar, estar presente y demostrarle a otra persona que no está sola.",
+    "price": null,
+    "quote": "Cuidar, acompañar y estar para otros también es una manera de tejer comunidad.",
+    "contact": null,
+    "photo": {
+      "src": "/profiles/amalfi-cuenca.webp",
+      "width": 922,
+      "height": 1152
+    },
+    "product": null,
+    "theme": {
+      "seed": "#944638",
+      "primary": "#9c4233",
+      "onPrimary": "#ffffff",
+      "primaryContainer": "#ffdad4",
+      "onPrimaryContainer": "#3f0300",
+      "secondaryContainer": "#ffdad4",
+      "onSecondaryContainer": "#2c1511",
+      "surface": "#fff8f6",
+      "surfaceContainerLow": "#fef1ee",
+      "surfaceContainer": "#f8ebe8",
+      "surfaceContainerHigh": "#f3e5e3",
+      "onSurface": "#201a19",
+      "onSurfaceVariant": "#534340",
+      "outlineVariant": "#d8c2be"
+    }
+  },
+  {
+    "slug": "yuliana-andrea-cadavid",
+    "name": "Yuliana Andrea Cadavid",
+    "category": "belleza",
+    "tagline": "Trenzas que conectan generaciones",
+    "role": "Trenzadora",
+    "story": "El trenzado llegó a Yuliana en los espacios familiares, aprendiendo de su madre y de su prima mirando, practicando y preguntando. Para ella es una forma de reconocer su habilidad y de compartir una práctica muy presente en la identidad afrodescendiente.",
+    "activity": "Servicio de trenzado para mujeres que quieren un peinado con identidad y cuidado.",
+    "price": null,
+    "quote": "Un saber que conecta generaciones y mantiene viva nuestra identidad afro.",
+    "contact": {
+      "lead": "Agenda tu cita",
+      "whatsapp": "3116195164",
+      "whatsappLabel": "3116195164",
+      "instagram": null,
+      "notes": []
+    },
+    "photo": {
+      "src": "/profiles/yuliana-andrea-cadavid.webp",
+      "width": 896,
+      "height": 1200
+    },
+    "product": {
+      "src": "/products/yuliana-andrea-cadavid.webp",
+      "width": 1376,
+      "height": 768
+    },
+    "theme": {
+      "seed": "#9c3046",
+      "primary": "#a5374c",
+      "onPrimary": "#ffffff",
+      "primaryContainer": "#ffd9dc",
+      "onPrimaryContainer": "#400011",
+      "secondaryContainer": "#ffd9dc",
+      "onSecondaryContainer": "#2c1518",
+      "surface": "#fff8f7",
+      "surfaceContainerLow": "#fef1f1",
+      "surfaceContainer": "#f8ebeb",
+      "surfaceContainerHigh": "#f2e5e5",
+      "onSurface": "#201a1b",
+      "onSurfaceVariant": "#524344",
+      "outlineVariant": "#d7c1c3"
+    }
+  },
+  {
+    "slug": "diana-marcela-moreno-gomez",
+    "name": "Diana Marcela Moreno Gómez",
+    "category": "artesania",
+    "tagline": "ASILI: cuidar la piel también es cuidar la vida",
+    "role": "Jabones artesanales y aceites macerados",
+    "story": "Desde Villa Clarita, Diana encontró en la elaboración de jabones y aceites una manera de expresar lo que siente y de cuidar a su familia. Su madre le enseñó que no hay que rendirse, y hoy Diana sueña con que su trabajo abra oportunidades para más mujeres.",
+    "activity": "Jabones artesanales en barra a base de glicerina y aceites macerados con plantas deshidratadas. Pedidos por encargo o entrega inmediata según disponibilidad.",
+    "price": "Jabones desde $15.000 hasta $35.000, según presentación.",
+    "quote": "Detrás de cada jabón y cada aceite hay una intención que va más allá de la venta: dignificar, cuidar y abrir oportunidades.",
+    "contact": {
+      "lead": "Encuéntrala y conoce sus productos",
+      "whatsapp": "3116702827",
+      "whatsappLabel": "311 670 2827",
+      "instagram": "asilijabon",
+      "notes": []
+    },
+    "photo": {
+      "src": "/profiles/diana-marcela-moreno-gomez.webp",
+      "width": 922,
+      "height": 1152
+    },
+    "product": {
+      "src": "/products/diana-marcela-moreno-gomez.webp",
+      "width": 1376,
+      "height": 768
+    },
+    "theme": {
+      "seed": "#8c9438",
+      "primary": "#5c6300",
+      "onPrimary": "#ffffff",
+      "primaryContainer": "#e0ea75",
+      "onPrimaryContainer": "#1b1d00",
+      "secondaryContainer": "#e4e5c1",
+      "onSecondaryContainer": "#1b1d07",
+      "surface": "#fcf9f0",
+      "surfaceContainerLow": "#f6f3eb",
+      "surfaceContainer": "#f1eee5",
+      "surfaceContainerHigh": "#ebe8df",
+      "onSurface": "#1c1c17",
+      "onSurfaceVariant": "#47483b",
+      "outlineVariant": "#c8c7b7"
+    }
+  },
+  {
+    "slug": "rocio-cuenca-viafara",
+    "name": "Rocío Cuenca Viafara",
+    "category": "gastronomia",
+    "tagline": "Las delicias de Rocío: el sabor de una herencia que sigue viva",
+    "role": "Las Delicias de Rocío",
+    "story": "En la vereda San Carlos, Rocío aprendió a cocinar observando a su abuela Chu, quien le enseñaba algo más que recetas: le transmitía la historia familiar y el valor de lo que se prepara con las propias manos. Después de más de 20 años de oficio, ese aprendizaje se convirtió en su propia iniciativa.",
+    "activity": "Preparaciones tradicionales como mondongo y champús, banquetes, refrigerios y alimentos típicos para ocasiones especiales. Atención por encargo en Puerto Tejada, sus alrededores y Cali.",
+    "price": "Precios: consultar por WhatsApp.",
+    "quote": "Las recetas familiares guardan mucho más que ingredientes: guardan recuerdos, enseñanzas e historia.",
+    "contact": {
+      "lead": "Haz tu pedido",
+      "whatsapp": "3233495825",
+      "whatsappLabel": "323 349 5825",
+      "instagram": null,
+      "notes": [
+        "Atención por encargo en Puerto Tejada, sus alrededores y Cali."
+      ]
+    },
+    "photo": {
+      "src": "/profiles/rocio-cuenca-viafara.webp",
+      "width": 922,
+      "height": 1152
+    },
+    "product": null,
+    "theme": {
+      "seed": "#a08a2c",
+      "primary": "#6f5d00",
+      "onPrimary": "#ffffff",
+      "primaryContainer": "#ffe16b",
+      "onPrimaryContainer": "#221b00",
+      "secondaryContainer": "#efe2bc",
+      "onSecondaryContainer": "#211b04",
+      "surface": "#fff9ef",
+      "surfaceContainerLow": "#f9f3ea",
+      "surfaceContainer": "#f3ede4",
+      "surfaceContainerHigh": "#ede7de",
+      "onSurface": "#1d1b16",
+      "onSurfaceVariant": "#4b4739",
+      "outlineVariant": "#cdc6b4"
+    }
+  },
+  {
+    "slug": "marolin-yaritza-martinez-cuenca",
+    "name": "Marolin Yaritza Martínez Cuenca",
+    "category": "gastronomia",
+    "tagline": "Las Vaquitas Yuryul: un emprendimiento que nace de la tradición familiar",
+    "role": "Las Vaquitas Yuryul",
+    "story": "Desde Villa Clarita, Marolin da sus primeros pasos en el emprendimiento con fresas con crema, un postre que tiene un significado especial para ella por la tradición familiar. Para Marolin es una oportunidad para lograr autonomía económica y construir un camino propio.",
+    "activity": "Fresas con crema (fresas frescas, crema de leche, lechera, leche en polvo y queso) en vasos de 10 onzas. Trabaja principalmente por encargo, con un día de anticipación.",
+    "price": "Vaso de 10 onzas: $4.000.",
+    "quote": "Una iniciativa joven que busca abrirse camino y encuentra en la tradición familiar una motivación para seguir creciendo.",
+    "contact": {
+      "lead": "Haz tu pedido",
+      "whatsapp": "3176914738",
+      "whatsappLabel": "317 691 4738",
+      "instagram": null,
+      "notes": [
+        "Ubicación: Villa Clarita, Puerto Tejada."
+      ]
+    },
+    "photo": {
+      "src": "/profiles/marolin-yaritza-martinez-cuenca.webp",
+      "width": 922,
+      "height": 1152
+    },
+    "product": {
+      "src": "/products/marolin-yaritza-martinez-cuenca.webp",
+      "width": 1376,
+      "height": 768
+    },
+    "theme": {
+      "seed": "#377495",
+      "primary": "#00658c",
+      "onPrimary": "#ffffff",
+      "primaryContainer": "#c5e7ff",
+      "onPrimaryContainer": "#001e2d",
+      "secondaryContainer": "#d2e5f4",
+      "onSecondaryContainer": "#0a1e28",
+      "surface": "#f9f9fc",
+      "surfaceContainerLow": "#f3f3f6",
+      "surfaceContainer": "#edeef0",
+      "surfaceContainerHigh": "#e7e8eb",
+      "onSurface": "#191c1e",
+      "onSurfaceVariant": "#41484d",
+      "outlineVariant": "#c1c7ce"
+    }
+  },
+  {
+    "slug": "niyiret-martinez-cuenca",
+    "name": "Niyiret Martínez Cuenca",
+    "category": "belleza",
+    "tagline": "Peluquería La Sarca: quince años transformando el cabello y fortaleciendo la confianza",
+    "role": "Peluquería La Sarca",
+    "story": "Niyiret aprendió este oficio de su mamá y de su tía, y desde hace unos 15 años lo convirtió en su actividad principal. Para ella, el cabello es parte de la identidad, y acompañar a una mujer en un cambio de imagen es una experiencia de confianza y bienestar.",
+    "activity": "Extensiones, pelucas y frontales de cabello humano, bisutería e instalación. Atiende pedidos y servicios personalizados a nivel local, nacional e internacional.",
+    "price": "Servicios de instalación desde $50.000. Ejemplo: extensión de cabello humano de 24 pulgadas, aprox. $850.000.",
+    "quote": "Una mujer que recibió un conocimiento de su familia y hoy contribuye a que otras mujeres se sientan bonitas, seguras y orgullosas de sí mismas.",
+    "contact": {
+      "lead": "Conoce sus productos y servicios",
+      "whatsapp": "3027428965",
+      "whatsappLabel": "302 742 8965",
+      "instagram": null,
+      "notes": []
+    },
+    "photo": {
+      "src": "/profiles/niyiret-martinez-cuenca.webp",
+      "width": 922,
+      "height": 1152
+    },
+    "product": {
+      "src": "/products/niyiret-martinez-cuenca.webp",
+      "width": 1376,
+      "height": 768
+    },
+    "theme": {
+      "seed": "#945938",
+      "primary": "#984813",
+      "onPrimary": "#ffffff",
+      "primaryContainer": "#ffdbca",
+      "onPrimaryContainer": "#331100",
+      "secondaryContainer": "#ffdbca",
+      "onSecondaryContainer": "#2b160a",
+      "surface": "#fff8f6",
+      "surfaceContainerLow": "#fef1ec",
+      "surfaceContainer": "#f8ebe6",
+      "surfaceContainerHigh": "#f2e6e1",
+      "onSurface": "#201a17",
+      "onSurfaceVariant": "#52443d",
+      "outlineVariant": "#d7c2b9"
+    }
+  },
+  {
+    "slug": "jina-rodriguez",
+    "name": "Jina Rodríguez",
+    "category": "saberes",
+    "tagline": "Entre hierbas y memorias: un saber que viene de nuestras ancestras",
+    "role": "Santo Viche",
+    "story": "Desde hace aproximadamente 20 años, Jina conserva y pone en práctica un saber que aprendió desde pequeña, observando a su abuela, sus tías y su mamá preparar mezclas con plantas y viche para el cuidado de la familia. Para ella, hablar de estas prácticas es recordar a esas mujeres y mantener viva una memoria que se ha transmitido de manera oral.",
+    "activity": "Preparaciones tradicionales con viche y hierbas, que se dejan macerar alrededor de una semana. Se hacen principalmente por encargo, en presentaciones desde botellas hasta canecas.",
+    "price": "Precios aprox. entre $10.000 y $200.000, según presentación y hierbas. Pedidos con una semana de anticipación.",
+    "quote": "Una mujer que guarda entre hierbas y recuerdos una parte de la sabiduría heredada de las mujeres de su familia.",
+    "contact": null,
+    "photo": {
+      "src": "/profiles/jina-rodriguez.webp",
+      "width": 922,
+      "height": 1152
+    },
+    "product": null,
+    "theme": {
+      "seed": "#945938",
+      "primary": "#984813",
+      "onPrimary": "#ffffff",
+      "primaryContainer": "#ffdbca",
+      "onPrimaryContainer": "#331100",
+      "secondaryContainer": "#ffdbca",
+      "onSecondaryContainer": "#2b160a",
+      "surface": "#fff8f6",
+      "surfaceContainerLow": "#fef1ec",
+      "surfaceContainer": "#f8ebe6",
+      "surfaceContainerHigh": "#f2e6e1",
+      "onSurface": "#201a17",
+      "onSurfaceVariant": "#52443d",
+      "outlineVariant": "#d7c2b9"
+    }
+  },
+  {
+    "slug": "yomaly-andrea-mejia",
+    "name": "Yomaly Andrea Mejía",
+    "category": "saberes",
+    "tagline": "Los tejidos de Yomaly: una herencia de amor que viene de su bisabuela",
+    "role": "Guardiana de un saber",
+    "story": "Hace unos diez años, Yomaly recibió de su bisabuela materna, Anacilia, el arte de tejer con lana, hilo y estambre. Cada lazada es para ella una forma de recordarla y de agradecerle una enseñanza que hoy hace parte de su historia.",
+    "activity": "Tejido como práctica personal y de memoria familiar. Yomaly comparte este saber para reconocer la enseñanza de su bisabuela, no como servicio comercial.",
+    "price": null,
+    "quote": "Una herencia que no se guarda en un objeto, sino en las manos, en la memoria y en la posibilidad de seguir haciendo lo que una vez alguien nos enseñó.",
+    "contact": null,
+    "photo": {
+      "src": "/profiles/yomaly-andrea-mejia.webp",
+      "width": 922,
+      "height": 1152
+    },
+    "product": null,
+    "theme": {
+      "seed": "#9f862d",
+      "primary": "#725c00",
+      "onPrimary": "#ffffff",
+      "primaryContainer": "#ffe07e",
+      "onPrimaryContainer": "#231b00",
+      "secondaryContainer": "#f0e2bb",
+      "onSecondaryContainer": "#221b04",
+      "surface": "#fff8f0",
+      "surfaceContainerLow": "#f9f3e9",
+      "surfaceContainer": "#f3ede4",
+      "surfaceContainerHigh": "#eee7de",
+      "onSurface": "#1e1b16",
+      "onSurfaceVariant": "#4c4639",
+      "outlineVariant": "#cec6b4"
+    }
+  },
+  {
+    "slug": "alexandra-cuenca-caicedo",
+    "name": "Alexandra Cuenca Caicedo",
+    "category": "artesania",
+    "tagline": "Set Te Calza: creatividad y estilo que nacen de sus propias manos",
+    "role": "Set Te Calza",
+    "story": "Hace unos siete meses, Alexandra encontró en la elaboración de chanclas artesanales una forma de expresar su creatividad. Su proceso ha sido de ingenio propio: experimentar, probar y descubrir cómo combinar las piezas hasta lograr el diseño que imagina.",
+    "activity": "Chanclas artesanales de tallas 34 a 43, con diseños propios. Entrega inmediata o por encargo, con posibilidad de llegar a otras ciudades del país.",
+    "price": "Chanclas: $30.000.",
+    "quote": "Demostrar que las ideas propias pueden convertirse en algo concreto cuando nos atrevemos a ponerlas en práctica.",
+    "contact": {
+      "lead": "Conoce y solicita tus chanclas",
+      "whatsapp": "3173542272",
+      "whatsappLabel": "317 354 2272",
+      "instagram": null,
+      "notes": []
+    },
+    "photo": {
+      "src": "/profiles/alexandra-cuenca-caicedo.webp",
+      "width": 922,
+      "height": 1152
+    },
+    "product": {
+      "src": "/products/alexandra-cuenca-caicedo.webp",
+      "width": 1376,
+      "height": 768
+    },
+    "theme": {
+      "seed": "#945b38",
+      "primary": "#97480e",
+      "onPrimary": "#ffffff",
+      "primaryContainer": "#ffdbc9",
+      "onPrimaryContainer": "#321200",
+      "secondaryContainer": "#ffdbc9",
+      "onSecondaryContainer": "#2b160a",
+      "surface": "#fff8f5",
+      "surfaceContainerLow": "#fef1ec",
+      "surfaceContainer": "#f8ebe6",
+      "surfaceContainerHigh": "#f2e6e0",
+      "onSurface": "#201a17",
+      "onSurfaceVariant": "#52443c",
+      "outlineVariant": "#d7c2b8"
+    }
+  },
+  {
+    "slug": "maria-isabel-ordonez-bonilla",
+    "name": "María Isabel Ordóñez Bonilla",
+    "category": "gastronomia",
+    "tagline": "Sabores del Chontaduro: una tradición familiar que se transforma en nuevos sabores",
+    "role": "Sabores del Chontaduro",
+    "story": "Desde niña, María Isabel aprendió de su mamá a aprovechar el chontaduro de muchas maneras. Hace más de seis años convirtió ese conocimiento en una iniciativa que muestra que esta fruta tradicional puede disfrutarse de nuevas formas, sin perder su esencia, y que ha fortalecido con capacitaciones en el SENA.",
+    "activity": "Limonada de chontaduro, tortas, arepas, galletas, chicha y mermeladas, sin químicos añadidos. Trabaja con productos disponibles y con pedidos por encargo; participa en ferias y eventos.",
+    "price": "Precios desde $8.000, según producto y cantidad.",
+    "quote": "Una mujer que recibió un conocimiento de su madre y hoy comparte con otras personas una parte de la riqueza gastronómica de nuestras comunidades.",
+    "contact": {
+      "lead": "Conoce sus productos y realiza tus pedidos",
+      "whatsapp": "3183688440",
+      "whatsappLabel": "318 368 8440",
+      "instagram": "saboresdelchontaduro",
+      "notes": []
+    },
+    "photo": {
+      "src": "/profiles/maria-isabel-ordonez-bonilla.webp",
+      "width": 922,
+      "height": 1152
+    },
+    "product": {
+      "src": "/products/maria-isabel-ordonez-bonilla.webp",
+      "width": 1376,
+      "height": 768
+    },
+    "theme": {
+      "seed": "#b67416",
+      "primary": "#875200",
+      "onPrimary": "#ffffff",
+      "primaryContainer": "#ffddba",
+      "onPrimaryContainer": "#2b1700",
+      "secondaryContainer": "#fdddbd",
+      "onSecondaryContainer": "#281805",
+      "surface": "#fff8f4",
+      "surfaceContainerLow": "#fcf2ea",
+      "surfaceContainer": "#f7ece4",
+      "surfaceContainerHigh": "#f1e6df",
+      "onSurface": "#1f1b16",
+      "onSurfaceVariant": "#50453a",
+      "outlineVariant": "#d4c4b5"
+    }
+  }
+]
