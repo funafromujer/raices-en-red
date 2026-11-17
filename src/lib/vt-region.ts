@@ -14,7 +14,7 @@ export function setPhotoRegion(aspectRatio: number) {
   let width: number;
   let height: number;
 
-  if (W < 900) {
+  if (W < 1139) {
     // Mobile: photo spans the full width at the top.
     left = 0;
     top = 0;

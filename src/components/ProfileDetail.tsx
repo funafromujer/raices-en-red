@@ -38,7 +38,7 @@ export default function ProfileDetail({ profile }: { profile: Profile }) {
               alt={`Retrato de ${profile.name}`}
               fill
               priority
-              sizes="(min-width: 900px) 42vw, 100vw"
+              sizes="(min-width: 1139px) 42vw, 100vw"
             />
             <span className="pill">{categoryLabel(profile.category)}</span>
           </div>
@@ -73,7 +73,7 @@ export default function ProfileDetail({ profile }: { profile: Profile }) {
                     alt={`Producto o servicio de ${profile.name}`}
                     width={product.width}
                     height={product.height}
-                    sizes="(min-width: 900px) 55vw, 100vw"
+                    sizes="(min-width: 1139px) 55vw, 100vw"
                   />
                 </div>
                 <figcaption>Producto o servicio de {firstName}</figcaption>

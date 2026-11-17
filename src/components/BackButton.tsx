@@ -30,11 +30,7 @@ export default function BackButton({ variant = "icon" }: { variant?: "icon" | "d
     const root = document.documentElement;
     const profile = document.querySelector<HTMLElement>(".profile");
     if (profile) setPhotoRegion(Number(getComputedStyle(profile).getPropertyValue("--ar")));
-    // Mobile: start the exit from the top of the page so it shrinks back into its card cleanly.
-    // Desktop keeps its scroll position: the photo is pinned and its scroll zoom stays as it is.
-    if (window.matchMedia("(max-width: 899px)").matches) {
-      profile?.scrollTo({ top: 0, behavior: "instant" });
-    }
+    // The profile keeps its scroll position on every viewport: nothing is reset before leaving.
     root.classList.add("is-leaving");
     // Safety net: never leave the scroll effects disabled if the navigation is interrupted.
     window.setTimeout(() => root.classList.remove("is-leaving"), 1500);

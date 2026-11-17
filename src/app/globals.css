@@ -1001,7 +1001,7 @@ em {
   font-weight: 600;
   color: var(--md-on-surface);
 }
-@media (max-width: 899px) {
+@media (max-width: 1138px) {
   .appbar__who {
     display: flex;
   }
@@ -1085,7 +1085,7 @@ em {
 }
 /* Mobile: the photo fills the whole box (including the strip behind the sheet's rounded
    corners) and is scaled up a touch so the image, not a backdrop, shows behind the corners. */
-@media (max-width: 899px) {
+@media (max-width: 1138px) {
   .detail__photo {
     inset: 0 !important;
     height: 100% !important;
@@ -1370,7 +1370,7 @@ em {
 .dock {
   display: none;
 }
-@media (max-width: 899px) {
+@media (max-width: 1138px) {
   .fab,
   .appbar .icon-btn {
     display: none;
@@ -1441,7 +1441,7 @@ em {
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1139px) {
   .detail {
     display: grid;
     grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
@@ -1566,14 +1566,6 @@ em {
     object-view-box: inset(var(--vt-t, 0%) var(--vt-r, 0%) var(--vt-b, 0%) var(--vt-l, 0%));
   }
 }
-/* While going back on mobile, drop the scroll-linked photo effects so it shrinks back cleanly.
-   Desktop keeps its zoom as it is (nothing is removed abruptly). */
-@media (max-width: 899px) {
-  .is-leaving .detail__photo,
-  .is-leaving .detail__media::before {
-    animation: none !important;
-  }
-}
 /* Leaving: the captured page shows only what the thumbnail has. The photo keeps its scale. */
 .is-leaving .appbar,
 .is-leaving .fab,
@@ -1627,7 +1619,7 @@ em {
 }
 
 /* ---------- Responsive switch ---------- */
-@media (max-width: 899px) {
+@media (max-width: 1138px) {
   .header--desktop {
     display: none;
   }
