@@ -1,0 +1,1552 @@
+/*
+ * Raíces en Red — Material 3 (expressive) on the Funamujer palette.
+ * Site shell: static scheme seeded from Funamujer plum.
+ * Profile pages: dynamic scheme generated from each profile photo (overrides the --md-* tokens).
+ */
+:root {
+  /* Funamujer tokens (kept as provided) */
+  --color-primary: #361f34;
+  --color-primary-tr: #361f34d6;
+  --color-accent: #ff7aec;
+  --color-white: #ffffff;
+  --color-glass-white: #ffffffcc;
+  --color-border-main: #ffffff4a;
+  --color-border-alt: #7700669c;
+  --color-menu-border: #ffffff26;
+  --color-primary-alt: #770066;
+  --font-primary: "Poppins";
+  --font-icons: "Material Symbols Outlined";
+  --glass-filter: blur(13px) saturate(9) brightness(2) contrast(1);
+  --shadow-header: rgba(0, 0, 0, 0.22) 0px 2px 16px;
+  --shadow-mobile-box: rgba(0, 0, 0, 0.3) 0px 0px 54px;
+  --shadow-backdrop: 0px -19px 93px 120px var(--color-primary);
+  --radius-pill: 50px;
+  --radius-header-mobile: 75px;
+  --radius-scroll: 39px;
+  --header-height-mobile: 70px;
+  --header-height-desktop: 60px;
+  --transition-base: all 0.5s ease;
+
+  /* Material 3 color roles (light) */
+  --md-primary: #770066;
+  --md-on-primary: #ffffff;
+  --md-primary-container: #ffd7ef;
+  --md-on-primary-container: #3a0031;
+  --md-secondary-container: #fadaec;
+  --md-on-secondary-container: #281622;
+  --md-surface: #fff8f9;
+  --md-surface-container-low: #fbf1f4;
+  --md-surface-container: #f6ebef;
+  --md-surface-container-high: #f0e6e9;
+  --md-on-surface: #1f1a1d;
+  --md-on-surface-variant: #4f444a;
+  --md-outline-variant: #d2c2ca;
+
+  /* Shape */
+  --shape-sm: 16px;
+  --shape-md: 24px;
+  --shape-lg: 32px;
+  --shape-xl: 44px;
+
+  /* Motion (Material 3 expressive) */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-short: 200ms;
+  --dur-medium: 420ms;
+  --dur-long: 700ms;
+
+  --font-body: var(--font-poppins), var(--font-primary), system-ui, sans-serif;
+  --font-serif: var(--font-display), "Yeseva One", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--md-surface);
+  color: var(--md-on-surface);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+em {
+  font-style: normal;
+}
+
+:focus-visible {
+  outline: 3px solid var(--md-primary);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
+}
+
+.material-icon {
+  font-family: var(--font-icons);
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.5em;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: "liga";
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+.eyebrow {
+  margin: 0 0 16px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--md-primary);
+}
+
+/* ---------- State layer + ripple (shared by interactive elements) ---------- */
+.btn,
+.chip,
+.icon-btn,
+.fab,
+.card__media {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn::before,
+.chip::before,
+.icon-btn::before,
+.fab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity var(--dur-short) var(--ease-standard);
+}
+.btn:hover::before,
+.chip:hover::before,
+.icon-btn:hover::before,
+.fab:hover::before {
+  opacity: 0.08;
+}
+.btn:active::before,
+.chip:active::before,
+.icon-btn:active::before,
+.fab:active::before {
+  opacity: 0.12;
+}
+.ripple {
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.16;
+  pointer-events: none;
+  transform: scale(0);
+  animation: ripple 650ms var(--ease-emphasized) forwards;
+}
+@keyframes ripple {
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/* ---------- Buttons (Funamujer style: pill, 2px outline, bold) ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 34px;
+  border: 2px solid var(--md-primary);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform var(--dur-medium) var(--ease-spring),
+    background var(--dur-short) var(--ease-standard),
+    color var(--dur-short) var(--ease-standard);
+}
+.btn svg,
+.btn .material-icon {
+  flex: none;
+  font-size: 1.3em;
+  transition: transform var(--dur-medium) var(--ease-spring);
+}
+.btn:hover svg,
+.btn:hover .material-icon {
+  transform: translateX(3px);
+}
+.btn:active {
+  transform: scale(0.96);
+}
+.btn--filled {
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+}
+.btn--outlined {
+  background: transparent;
+  color: var(--md-primary);
+}
+.btn--white {
+  background: #fff;
+  color: var(--color-primary-alt);
+  border-color: var(--color-primary-alt);
+}
+
+/* ---------- Scroll reveal ---------- */
+/* Scroll-driven animations follow the scroll position: they play forward when scrolling down and
+   in reverse when scrolling up, on the compositor thread. A JS fallback covers other browsers. */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal-fade cubic-bezier(0.2, 0, 0, 1) both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 45%;
+  }
+  .card {
+    animation: reveal-card cubic-bezier(0.2, 0, 0, 1) both;
+    animation-timeline: view();
+    /* Each column starts a little later, so a row fills in left to right. */
+    animation-range: entry calc(var(--col, 0) * 16%) entry calc(52% + var(--col, 0) * 16%);
+  }
+}
+@keyframes reveal-fade {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+@keyframes reveal-card {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+}
+@supports not (animation-timeline: view()) {
+  @media (scripting: enabled) {
+    .reveal,
+    .card {
+      opacity: 0;
+      transform: translateY(32px);
+    }
+    .reveal.is-in,
+    .card.is-in {
+      opacity: 1;
+      transform: none;
+      transition:
+        opacity 500ms var(--ease-standard) var(--d, 0ms),
+        transform 800ms var(--ease-spring) var(--d, 0ms);
+    }
+  }
+}
+
+/* ---------- Header: desktop pill ---------- */
+.header {
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  background: var(--color-primary-tr);
+  -webkit-backdrop-filter: var(--glass-filter);
+  backdrop-filter: var(--glass-filter);
+  border: 1px solid var(--color-menu-border);
+  color: var(--color-white);
+}
+
+.header--desktop {
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  height: var(--header-height-desktop);
+  padding: 0 10px 0 28px;
+  justify-content: space-between;
+  gap: 24px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-header);
+}
+.header--desktop .header__logo img {
+  height: 40px;
+  width: auto;
+}
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto;
+}
+.header__link {
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-decoration: none;
+  transition: var(--transition-base);
+}
+.header__link:hover {
+  background: #ffffff1f;
+}
+.header__link.is-active {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+.header__cta {
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+  background: var(--color-white);
+  color: var(--color-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 0.25s ease;
+}
+.header__cta:hover {
+  transform: scale(1.04);
+}
+
+/* ---------- Header: mobile bottom bar ---------- */
+.header--mobile {
+  display: none;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  height: var(--header-height-mobile);
+  padding: 0 28px 0 22px;
+  justify-content: space-between;
+  border-radius: var(--radius-header-mobile);
+  box-shadow: var(--shadow-mobile-box);
+}
+.header--mobile .header__logo img {
+  height: 44px;
+  width: auto;
+}
+.header--mobile .header__logo {
+  margin-right: auto;
+}
+.header__icon-btn {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-left: 6px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-white);
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  visibility: hidden;
+  pointer-events: none;
+}
+.mobile-menu.is-open {
+  visibility: visible;
+  pointer-events: auto;
+}
+.mobile-menu__scrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: rgba(20, 8, 20, 0.45);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.mobile-menu.is-open .mobile-menu__scrim {
+  opacity: 1;
+}
+.mobile-menu__panel {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  padding: 24px 0 22px;
+  border: 1px solid var(--color-menu-border);
+  border-radius: 40px;
+  background: var(--color-primary-tr);
+  -webkit-backdrop-filter: var(--glass-filter);
+  backdrop-filter: var(--glass-filter);
+  box-shadow: var(--shadow-mobile-box);
+  color: var(--color-white);
+  opacity: 0;
+  transform: translateY(24px) scale(0.96);
+  transform-origin: bottom center;
+  transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.22, 0.9, 0.24, 1);
+}
+.mobile-menu.is-open .mobile-menu__panel {
+  opacity: 1;
+  transform: none;
+}
+.mobile-menu__close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 1px solid var(--color-border-main);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-white);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.mobile-menu__logo {
+  display: flex;
+  justify-content: center;
+  padding: 14px 0 26px;
+}
+.mobile-menu__logo img {
+  height: 76px;
+  width: auto;
+}
+.mobile-menu__list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-menu-border);
+}
+.mobile-menu__list a {
+  padding: 17px 38px;
+  border-bottom: 1px solid var(--color-menu-border);
+  font-size: 1.05rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.mobile-menu__list a.is-active {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+.mobile-menu__socials {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  padding-top: 22px;
+  font-size: 1.5rem;
+}
+.mobile-menu__socials a {
+  display: grid;
+  place-items: center;
+}
+
+/* ---------- Header: hide on profile pages (menu stays Funamujer's) ---------- */
+.header--desktop,
+.header--mobile {
+  transition:
+    transform 0.54s var(--ease-emphasized),
+    opacity 0.35s var(--ease-standard);
+}
+.header.is-hidden {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.header--desktop.is-hidden {
+  transform: translateY(-140%);
+  opacity: 0;
+  pointer-events: none;
+}
+.header--mobile.is-hidden {
+  transform: translateY(160%);
+  opacity: 0;
+  pointer-events: none;
+}
+.header {
+  view-transition-name: site-header;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: 170px 24px 40px;
+  text-align: center;
+}
+.hero__inner {
+  max-width: 880px;
+  margin: 0 auto;
+}
+.hero__logo {
+  width: min(250px, 56vw);
+  height: auto;
+  margin: 0 auto 34px;
+  animation: rise var(--dur-long) var(--ease-emphasized) both;
+}
+.hero__title {
+  margin: 0 0 26px;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  color: var(--color-primary);
+}
+.hero__title .w {
+  display: inline-block;
+  overflow: hidden;
+  padding: 0 0.04em 0.14em;
+  margin-bottom: -0.14em;
+  vertical-align: top;
+}
+.hero__title .w > span {
+  display: inline-block;
+  animation: word-up 900ms var(--ease-emphasized) calc(160ms + var(--i) * 70ms) both;
+}
+.hero__title .hl {
+  color: var(--md-primary);
+}
+.hero__text {
+  margin: 0 auto 10px;
+  max-width: 580px;
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+  color: var(--md-on-surface-variant);
+  animation: rise var(--dur-long) var(--ease-emphasized) 520ms both;
+}
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+  animation: rise var(--dur-long) var(--ease-emphasized) 640ms both;
+}
+.hero__people {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 40px;
+  color: var(--md-on-surface-variant);
+  font-size: 0.88rem;
+  animation: rise var(--dur-long) var(--ease-emphasized) 760ms both;
+}
+.avatars {
+  display: flex;
+}
+.avatars__item {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  margin-left: -12px;
+  overflow: hidden;
+  border: 3px solid var(--md-surface);
+  border-radius: 50%;
+  background: var(--md-surface-container-high);
+  animation: pop var(--dur-long) var(--ease-spring) calc(860ms + var(--i) * 70ms) both;
+  transition: transform var(--dur-medium) var(--ease-spring);
+}
+.avatars__item:first-child {
+  margin-left: 0;
+}
+.avatars:hover .avatars__item {
+  transform: translateX(calc(var(--i) * 4px));
+}
+.avatars__item img {
+  object-fit: cover;
+  object-position: 50% 20%;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+}
+@keyframes word-up {
+  from {
+    transform: translateY(110%);
+  }
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+/* ---------- Catalog ---------- */
+.catalog {
+  padding: 70px 0 90px;
+}
+.catalog__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.catalog__head {
+  margin-bottom: 28px;
+}
+.catalog__title {
+  margin: 0;
+  max-width: 640px;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(2rem, 4.6vw, 3.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--color-primary);
+}
+
+.chips {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 -20px 30px;
+  padding: 4px 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.chips::-webkit-scrollbar {
+  display: none;
+}
+.chip {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--md-surface-container-high);
+  color: var(--md-on-surface);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background var(--dur-medium) var(--ease-standard),
+    color var(--dur-medium) var(--ease-standard),
+    transform var(--dur-medium) var(--ease-spring);
+}
+.chip:active {
+  transform: scale(0.95);
+}
+.chip__check {
+  display: grid;
+  width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.4);
+  transition:
+    width var(--dur-medium) var(--ease-spring),
+    opacity var(--dur-short) var(--ease-standard),
+    transform var(--dur-medium) var(--ease-spring),
+    margin var(--dur-medium) var(--ease-spring);
+}
+.chip__check .material-icon {
+  font-size: 1.2em;
+}
+.chip.is-active {
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+  font-weight: 600;
+}
+.chip.is-active .chip__check {
+  width: 1.2em;
+  margin-right: 8px;
+  opacity: 1;
+  transform: none;
+}
+.chips__count {
+  flex: none;
+  margin-left: auto;
+  padding-left: 14px;
+  font-size: 0.82rem;
+  color: var(--md-on-surface-variant);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 14px;
+}
+@media (min-width: 800px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 36px 22px;
+  }
+}
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.card__media {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--shape-lg);
+  background: var(--card-bg, var(--md-surface-container-high));
+  color: #fff;
+  transition: transform var(--dur-medium) var(--ease-spring);
+}
+.card:active .card__media {
+  transform: scale(0.97);
+}
+.card__img {
+  object-fit: cover;
+  object-position: 50% 20%;
+  transition: transform 1s var(--ease-emphasized);
+}
+.card:hover .card__img {
+  transform: scale(1.06);
+}
+.card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--md-surface) 92%, transparent);
+  color: var(--md-on-surface);
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+.card__meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 6px 0;
+}
+.card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.card__name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  line-height: 1.2;
+  color: var(--color-primary);
+}
+.card__role {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--md-on-surface-variant);
+}
+.card__go {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--md-surface-container-high);
+  color: var(--md-on-surface);
+  font-size: 0.8rem;
+  transition:
+    background var(--dur-medium) var(--ease-standard),
+    color var(--dur-medium) var(--ease-standard),
+    transform var(--dur-medium) var(--ease-spring);
+}
+.card:hover .card__go {
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+  transform: rotate(45deg);
+}
+
+/* Column index within a row (matches the grid breakpoints) for the left-to-right stagger. */
+@media (max-width: 799px) {
+  .card:nth-child(2n) {
+    --col: 1;
+  }
+}
+@media (min-width: 800px) and (max-width: 1199px) {
+  .card:nth-child(3n + 2) {
+    --col: 1;
+  }
+  .card:nth-child(3n) {
+    --col: 2;
+  }
+}
+@media (min-width: 1200px) {
+  .card:nth-child(4n + 2) {
+    --col: 1;
+  }
+  .card:nth-child(4n + 3) {
+    --col: 2;
+  }
+  .card:nth-child(4n) {
+    --col: 3;
+  }
+}
+
+/* After a filter change the new cards re-enter one by one (inner elements, so the scroll
+   reveal on .card is not touched). */
+.grid[data-swap] .card__media,
+.grid[data-swap] .card__meta {
+  animation: card-swap 600ms var(--ease-emphasized) backwards;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+@keyframes card-swap {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+}
+
+/* ---------- Profile page ---------- */
+/* The profile is a window-sized stage with its own scroll, so the whole page can scale as one
+   piece (it is the shared element of the view transition). */
+.profile {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--md-surface);
+  /* Named so descendants (inside overflow:hidden boxes) can still follow this scroll. */
+  scroll-timeline: --profile-scroll block;
+}
+.detail {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 0 130px;
+}
+/* Detects when the page has scrolled, so the back button can dock. */
+.appbar__sentinel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 40px;
+  pointer-events: none;
+}
+/* Sits in the page at first; sticks to the top as soon as you scroll. */
+.appbar {
+  position: sticky;
+  top: 16px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: fit-content;
+  height: 48px;
+  margin: 16px 0 -64px 16px;
+  animation: rise var(--dur-long) var(--ease-emphasized) both;
+}
+.appbar .icon-btn {
+  transition:
+    transform var(--dur-medium) var(--ease-spring),
+    border-radius var(--dur-medium) var(--ease-spring),
+    background var(--dur-medium) var(--ease-standard),
+    box-shadow var(--dur-medium) var(--ease-standard);
+}
+.appbar__title {
+  display: none;
+  max-width: 6em;
+  overflow: hidden;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  color: var(--md-on-surface-variant);
+  transition:
+    opacity var(--dur-medium) var(--ease-standard),
+    max-width var(--dur-medium) var(--ease-emphasized),
+    transform var(--dur-medium) var(--ease-emphasized);
+}
+/* Docked state: the label folds away and the button pops into a pinned, outlined control. */
+.appbar[data-stuck] .icon-btn {
+  background: color-mix(in srgb, var(--md-surface) 94%, transparent);
+  box-shadow: inset 0 0 0 1px var(--md-outline-variant);
+  animation: dock 520ms var(--ease-spring);
+}
+.appbar[data-stuck] .appbar__title {
+  max-width: 0;
+  opacity: 0;
+  transform: translateX(-12px);
+}
+/* Mobile: small photo + name pop in beside the pinned back button. */
+.appbar__who {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  max-width: 0;
+  padding: 0 18px 0 6px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--md-surface) 94%, transparent);
+  box-shadow: inset 0 0 0 1px var(--md-outline-variant);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-18px) scale(0.8);
+  transform-origin: left center;
+  white-space: nowrap;
+  transition:
+    opacity var(--dur-medium) var(--ease-standard),
+    max-width 600ms var(--ease-emphasized),
+    transform 600ms var(--ease-spring);
+}
+.appbar__avatar {
+  position: relative;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--md-surface-container-high);
+}
+.appbar__avatar img {
+  object-fit: cover;
+  object-position: 50% 28%;
+}
+.appbar__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--md-on-surface);
+}
+@media (max-width: 899px) {
+  .appbar__who {
+    display: flex;
+  }
+  .appbar[data-stuck] .appbar__who {
+    max-width: calc(100vw - 96px);
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes dock {
+  0% {
+    transform: scale(0.7);
+  }
+  60% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--md-surface-container-high);
+  color: var(--md-on-surface);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition:
+    transform var(--dur-medium) var(--ease-spring),
+    border-radius var(--dur-medium) var(--ease-spring);
+}
+.icon-btn .material-icon {
+  transition: transform var(--dur-medium) var(--ease-spring);
+}
+.icon-btn:hover {
+  border-radius: var(--shape-sm);
+}
+.icon-btn:hover .material-icon {
+  transform: translateX(-3px);
+}
+.icon-btn:active {
+  transform: scale(0.92);
+}
+
+/* The photo never scrolls: it stays pinned while the content slides over it. */
+.detail__photo-col {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  /* The box has the photo's own proportions, so the whole photo is always visible.
+     The extra 28px sits under the content sheet's rounded top. */
+  height: calc(min(100vw / var(--ar, 0.8), 76dvh) + 28px);
+}
+.detail__media {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  isolation: isolate;
+}
+/* Blurred copy of the photo behind it: when the sharp photo shrinks and blurs, its soft edges
+   melt into this instead of revealing a frame. */
+.detail__media::before {
+  content: "";
+  position: absolute;
+  inset: -15%;
+  z-index: 0;
+  background: var(--photo) 50% 20% / cover no-repeat, var(--md-surface-container-high);
+  filter: blur(36px) saturate(1.1);
+  opacity: 0; /* only visible while the photo zooms out / when letterboxed on desktop */
+}
+.detail__photo {
+  z-index: 1;
+  object-fit: contain;
+  object-position: 50% 0;
+  transform-origin: 50% 35%;
+}
+/* Mobile: the photo fills the whole box (including the strip behind the sheet's rounded
+   corners) and is scaled up a touch so the image, not a backdrop, shows behind the corners. */
+@media (max-width: 899px) {
+  .detail__photo {
+    inset: 0 !important;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: 50% 0;
+    transform: scale(1.1);
+    transform-origin: 50% 25%;
+  }
+}
+/* Mobile: as the content sheet slides up, the pinned photo zooms out, blurs and fades away
+   (scroll-linked, so it reverses when scrolling back up). */
+@supports (animation-timeline: scroll()) {
+  .detail__photo {
+    animation: photo-away linear both;
+    animation-timeline: --profile-scroll;
+    animation-range: 0 55dvh;
+  }
+  .detail__media::before {
+    animation: backdrop-away linear both;
+    animation-timeline: --profile-scroll;
+    animation-range: 0 55dvh;
+  }
+  .detail__media .pill {
+    animation: pill-away linear both;
+    animation-timeline: --profile-scroll;
+    animation-range: 0 25dvh;
+  }
+}
+@keyframes photo-away {
+  50% {
+    opacity: 0.55;
+    filter: blur(22px);
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 0;
+    filter: blur(44px);
+    transform: scale(0.78);
+  }
+}
+/* Desktop: no blur or fade. The pinned photo just zooms in gently while the page scrolls. */
+@keyframes photo-zoom {
+  to {
+    transform: scale(1.09);
+  }
+}
+@keyframes backdrop-away {
+  0% {
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes pill-away {
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+.pill {
+  position: absolute;
+  z-index: 2; /* above the photo (z-index 1) */
+  /* Mobile: bottom-left of the photo, clear of the pinned back button and name pill at the top. */
+  bottom: 44px;
+  left: 16px;
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--md-surface) 92%, transparent);
+  color: var(--md-on-surface);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.detail__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: -28px;
+  padding: 32px 16px 40px;
+  border-radius: var(--shape-lg) var(--shape-lg) 0 0;
+  background: var(--md-surface);
+}
+.detail__content > * {
+  animation: rise var(--dur-long) var(--ease-emphasized) both;
+}
+.detail__content > :nth-child(1) { animation-delay: 160ms; }
+.detail__content > :nth-child(2) { animation-delay: 230ms; }
+.detail__content > :nth-child(3) { animation-delay: 300ms; }
+.detail__content > :nth-child(4) { animation-delay: 370ms; }
+.detail__content > :nth-child(5) { animation-delay: 440ms; }
+.detail__content > :nth-child(6) { animation-delay: 510ms; }
+.detail__content > :nth-child(7) { animation-delay: 580ms; }
+
+.detail__name {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--md-on-surface);
+}
+.detail__role {
+  margin: 8px 0 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--md-on-surface-variant);
+}
+.detail__tagline {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(1.3rem, 2.8vw, 1.75rem);
+  line-height: 1.25;
+  color: var(--md-primary);
+}
+.detail__story {
+  margin: 0;
+  font-size: 1.04rem;
+  line-height: 1.8;
+  color: var(--md-on-surface-variant);
+}
+
+.panel {
+  padding: 26px;
+  border-radius: var(--shape-lg);
+  background: var(--md-surface-container-low);
+}
+.panel p {
+  margin: 0;
+}
+.panel__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 12px;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.35rem;
+  color: var(--md-on-surface);
+}
+.panel__title .material-icon {
+  font-size: 1.1em;
+  color: var(--md-primary);
+}
+.offer p:not(.offer__price) {
+  line-height: 1.7;
+  color: var(--md-on-surface-variant);
+}
+.offer__price {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 18px !important;
+  padding: 12px 18px;
+  border-radius: var(--shape-md);
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container);
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.offer__price .material-icon {
+  font-size: 1.3em;
+}
+
+.product {
+  margin: 0;
+}
+.product__img {
+  overflow: hidden;
+  border-radius: var(--shape-lg);
+}
+.product__img img {
+  width: 100%;
+  height: auto;
+  transition: transform 1.2s var(--ease-emphasized);
+}
+.product:hover .product__img img {
+  transform: scale(1.03);
+}
+.product figcaption {
+  padding: 12px 8px 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--md-on-surface-variant);
+}
+
+.quote {
+  margin: 0;
+  padding: 26px 28px;
+  border-radius: var(--shape-lg);
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  font-weight: 500;
+  line-height: 1.55;
+}
+/* A real opening quotation mark (the "66" shape) in the title font, instead of the icon glyph
+   that read as a closing "99". */
+.quote__mark {
+  display: block;
+  height: 2.1rem;
+  margin-bottom: 6px;
+  color: var(--md-primary);
+  font-family: var(--font-serif);
+  font-size: 5rem;
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.contact__actions .btn {
+  flex: 1 1 210px;
+}
+.contact__note {
+  margin-top: 14px !important;
+  font-size: 0.88rem;
+  color: var(--md-on-surface-variant);
+}
+
+/* Extended FAB */
+.fab {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  height: 60px;
+  padding: 0 26px 0 22px;
+  border-radius: 22px;
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  animation: fab-in var(--dur-long) var(--ease-spring) 900ms both;
+  transition:
+    border-radius var(--dur-medium) var(--ease-spring),
+    transform var(--dur-medium) var(--ease-spring);
+}
+.fab svg {
+  font-size: 1.5em;
+}
+.fab:hover {
+  border-radius: 30px;
+}
+.fab:active {
+  transform: scale(0.95);
+}
+@keyframes fab-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.6);
+  }
+}
+
+@media (min-width: 900px) {
+  .detail {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    grid-template-rows: auto 1fr;
+    column-gap: 64px;
+    padding: 28px 32px 24px;
+  }
+  .appbar {
+    grid-column: 1 / -1;
+    justify-self: start;
+    top: 28px;
+    height: 48px;
+    margin: 0 0 20px;
+  }
+  .appbar__title {
+    display: block;
+  }
+  /* Starts at the same offset it sticks at (28 + 48 + 20), so it never shifts. */
+  .detail__photo-col {
+    top: 96px;
+    align-self: start;
+    height: auto;
+  }
+  .detail__media {
+    --col-w: calc((min(100vw, 1240px) - 128px) * 5 / 11);
+    height: min(calc(var(--col-w) / var(--ar, 0.8)), calc(100dvh - 120px));
+    border-radius: var(--shape-xl);
+    background: var(--md-surface-container-high);
+  }
+  .pill {
+    top: 14px;
+    bottom: auto;
+    left: 14px;
+  }
+  .detail__photo {
+    animation: photo-zoom linear both;
+    animation-timeline: --profile-scroll;
+    animation-range: 0 70dvh;
+    transform-origin: 50% 40%;
+  }
+  .detail__media .pill,
+  .detail__media::before {
+    animation: none;
+  }
+  .detail__content {
+    margin-top: 0;
+    padding: 6px 0 90px;
+    border-radius: 0;
+    background: none;
+  }
+  .fab {
+    right: 32px;
+    bottom: 32px;
+  }
+  .profile .footer {
+    display: none;
+  }
+}
+
+/* ---------- View transitions ---------- */
+::view-transition {
+  pointer-events: none;
+}
+::view-transition-group(.morph) {
+  animation-duration: 540ms;
+  animation-timing-function: var(--ease-emphasized);
+}
+/* The page snapshot keeps its proportions while the group resizes: it is cropped from the top
+   to the card's 4:5 frame, which is where the profile photo sits, so the zoom-out lands on the
+   thumbnail's exact aspect ratio instead of stretching. */
+::view-transition-old(.morph),
+::view-transition-new(.morph) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0;
+  animation: none;
+  mix-blend-mode: normal;
+}
+/* Opening and closing use the same recipe, mirrored: while the page is cropped down to (or up
+   from) the thumbnail's frame, the two snapshots cross-fade at the same time, on the same curve,
+   so the crop and the fade stay in sync from start to finish. */
+:root:active-view-transition-type(nav-forward)::view-transition-old(.morph) {
+  animation: vt-fade-out 540ms var(--ease-emphasized) both;
+}
+:root:active-view-transition-type(nav-forward)::view-transition-new(.morph) {
+  animation:
+    vt-fade-in 540ms var(--ease-emphasized) both,
+    vt-open-crop 540ms var(--ease-emphasized) both;
+}
+:root:not(:active-view-transition-type(nav-forward))::view-transition-old(.morph) {
+  animation:
+    vt-fade-out 540ms var(--ease-emphasized) both,
+    vt-close-crop 540ms var(--ease-emphasized) both;
+}
+:root:not(:active-view-transition-type(nav-forward))::view-transition-new(.morph) {
+  animation: vt-fade-in 540ms var(--ease-emphasized) both;
+}
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes vt-open-crop {
+  from {
+    object-view-box: inset(var(--vt-t, 0%) var(--vt-r, 0%) var(--vt-b, 0%) var(--vt-l, 0%));
+  }
+  to {
+    object-view-box: inset(0% 0% 0% 0%);
+  }
+}
+@keyframes vt-close-crop {
+  from {
+    object-view-box: inset(0% 0% 0% 0%);
+  }
+  to {
+    object-view-box: inset(var(--vt-t, 0%) var(--vt-r, 0%) var(--vt-b, 0%) var(--vt-l, 0%));
+  }
+}
+/* While going back on mobile, drop the scroll-linked photo effects so it shrinks back cleanly.
+   Desktop keeps its zoom as it is (nothing is removed abruptly). */
+@media (max-width: 899px) {
+  .is-leaving .detail__photo,
+  .is-leaving .detail__media::before {
+    animation: none !important;
+  }
+}
+/* Leaving: the captured page shows only what the thumbnail has. The photo keeps its scale. */
+.is-leaving .appbar,
+.is-leaving .fab,
+.is-leaving .detail__media .pill {
+  opacity: 0 !important;
+  animation: none !important;
+  transition: none !important;
+}
+/* The Funamujer header animates itself; keep its snapshot live instead of crossfading. */
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) {
+  display: none;
+}
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+/* ---------- About + footer ---------- */
+.about {
+  padding: 0 16px 80px;
+}
+.about__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(44px, 7vw, 88px) clamp(24px, 6vw, 88px);
+  border-radius: var(--shape-xl);
+  background: var(--color-primary);
+  color: #fff;
+  text-align: center;
+}
+.about .eyebrow {
+  color: var(--color-accent);
+}
+.about__title {
+  margin: 0 0 18px;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 4.4vw, 3rem);
+  line-height: 1.1;
+}
+.about__title em {
+  color: var(--color-accent);
+}
+.about__text {
+  margin: 0 auto 30px;
+  max-width: 600px;
+  color: #ead7e6;
+}
+
+.footer {
+  padding: 8px 24px 44px;
+  color: var(--md-on-surface-variant);
+  font-size: 0.8rem;
+  text-align: center;
+}
+.footer p {
+  margin: 0;
+}
+
+/* ---------- Responsive switch ---------- */
+@media (max-width: 899px) {
+  .header--desktop {
+    display: none;
+  }
+  .header--mobile {
+    display: flex;
+  }
+  .hero {
+    padding: 64px 20px 20px;
+  }
+  .footer {
+    padding-bottom: 120px;
+  }
+  .chips__count {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .detail__photo,
+  .detail__media .pill {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.01ms !important;
+  }
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
