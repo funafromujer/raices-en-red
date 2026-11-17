@@ -4,6 +4,7 @@ import Image from "next/image";
 import { categoryLabel } from "@/lib/profiles";
 import { themeVars } from "@/lib/theme";
 import type { Profile } from "@/lib/types";
+import BackButton from "./BackButton";
 import ProfileAppbar from "./ProfileAppbar";
 import { InstagramIcon, MaterialIcon, WhatsAppIcon } from "./Icons";
 import SiteFooter from "./SiteFooter";
@@ -115,6 +116,34 @@ export default function ProfileDetail({ profile }: { profile: Profile }) {
         </div>
       </article>
 
+      {/* Mobile: one connected button group at the bottom: back (icon only), then contact actions. */}
+      <div className="dock">
+        <BackButton variant="dock" />
+        {waHref && (
+          <a
+            className="dock__btn dock__btn--main"
+            href={waHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Escribir a ${firstName} por WhatsApp`}
+          >
+            <WhatsAppIcon /> Escribir
+          </a>
+        )}
+        {igHref && (
+          <a
+            className="dock__btn"
+            href={igHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Instagram de ${firstName}`}
+          >
+            <InstagramIcon />
+          </a>
+        )}
+      </div>
+
+      {/* Desktop: extended FAB. */}
       {waHref && (
         <a className="fab" href={waHref} target="_blank" rel="noopener noreferrer" aria-label={`Escribir a ${firstName} por WhatsApp`}>
           <WhatsAppIcon /> Escribir

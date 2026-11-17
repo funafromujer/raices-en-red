@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-const SELECTOR = ".btn, .chip, .icon-btn, .fab, .card__media";
+const SELECTOR = ".btn, .chip, .icon-btn, .fab, .dock__btn, .card__media";
 
 /** Material-style ripple: one delegated listener, no per-component wiring. */
 export default function Ripple() {

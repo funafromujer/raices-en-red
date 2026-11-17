@@ -14,7 +14,7 @@ export const RESTORE_SCROLL_KEY = "raices:restore-scroll";
  * transition in reverse: the whole page scales back down into its catalog card. The browser's
  * own back button does not start a view transition, which is why this is not `router.back()`.
  */
-export default function BackButton() {
+export default function BackButton({ variant = "icon" }: { variant?: "icon" | "dock" }) {
   const router = useRouter();
 
   const goBack = () => {
@@ -44,7 +44,13 @@ export default function BackButton() {
   };
 
   return (
-    <button type="button" className="icon-btn" onClick={goBack} aria-label="Volver al catálogo" title="Volver">
+    <button
+      type="button"
+      className={variant === "dock" ? "dock__btn dock__btn--back" : "icon-btn"}
+      onClick={goBack}
+      aria-label="Volver al catálogo"
+      title="Volver"
+    >
       <MaterialIcon name="arrow_back" />
     </button>
   );

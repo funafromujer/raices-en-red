@@ -140,6 +140,7 @@ em {
 .chip,
 .icon-btn,
 .fab,
+.dock__btn,
 .card__media {
   position: relative;
   overflow: hidden;
@@ -149,7 +150,8 @@ em {
 .btn::before,
 .chip::before,
 .icon-btn::before,
-.fab::before {
+.fab::before,
+.dock__btn::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -161,13 +163,15 @@ em {
 .btn:hover::before,
 .chip:hover::before,
 .icon-btn:hover::before,
-.fab:hover::before {
+.fab:hover::before,
+.dock__btn:hover::before {
   opacity: 0.08;
 }
 .btn:active::before,
 .chip:active::before,
 .icon-btn:active::before,
-.fab:active::before {
+.fab:active::before,
+.dock__btn:active::before {
   opacity: 0.12;
 }
 .ripple {
@@ -482,28 +486,37 @@ em {
 }
 
 /* ---------- Header: hide on profile pages (menu stays Funamujer's) ---------- */
+/* The header only slides (no opacity): an element with opacity < 1 loses its backdrop blur until
+   the animation ends, so the glass would pop in at the end. It is not a named view-transition
+   element either: those are captured on their own, without what is behind them to blur. */
 .header--desktop,
 .header--mobile {
   transition:
     transform 0.54s var(--ease-emphasized),
-    opacity 0.35s var(--ease-standard);
+    visibility 0s linear 0s;
 }
-.header.is-hidden {
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-}
-.header--desktop.is-hidden {
-  transform: translateY(-140%);
-  opacity: 0;
-  pointer-events: none;
-}
+.header--desktop.is-hidden,
 .header--mobile.is-hidden {
-  transform: translateY(160%);
-  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    transform 0.54s var(--ease-emphasized),
+    visibility 0s linear 0.54s;
+}
+/* Leaving a profile: the bar would be part of the root snapshot, under the page shrinking back into
+   its card, so it stays hidden until the transition ends and only then slides in. */
+:root:active-view-transition-type(nav-back) .header--desktop,
+:root:active-view-transition-type(nav-back) .header--mobile {
+  visibility: hidden;
   pointer-events: none;
 }
-.header {
-  view-transition-name: site-header;
+.header--desktop.is-hidden,
+:root:active-view-transition-type(nav-back) .header--desktop {
+  transform: translateY(-140%);
+}
+.header--mobile.is-hidden,
+:root:active-view-transition-type(nav-back) .header--mobile {
+  transform: translateY(160%);
 }
 
 /* ---------- Hero ---------- */
@@ -1338,10 +1351,93 @@ em {
 .fab:active {
   transform: scale(0.95);
 }
+/* Mobile dock: slides up from below the screen edge. Transform only, no opacity fade, so its glass
+   blur works during the whole entrance. */
+@keyframes dock-in {
+  from {
+    transform: translateY(calc(100% + 24px));
+  }
+}
 @keyframes fab-in {
   from {
     opacity: 0;
     transform: translateY(40px) scale(0.6);
+  }
+}
+
+/* Mobile bottom dock: a connected button group (Material 3). The back button is the first,
+   icon-only segment; the contact actions sit next to it. Desktop keeps the top bar + FAB. */
+.dock {
+  display: none;
+}
+@media (max-width: 899px) {
+  .fab,
+  .appbar .icon-btn {
+    display: none;
+  }
+  .dock {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 60;
+    display: flex;
+    gap: 3px;
+    /* "backwards" (not "both"): nothing keeps animating once it is in place, so the glass
+       blur of the segments can sample what is behind the dock. */
+    animation: dock-in var(--dur-long) var(--ease-spring) 500ms backwards;
+  }
+  .dock__btn {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 60px;
+    height: 60px;
+    padding: 0 18px;
+    /* Funamujer navigation glass (same filter and the same 84% tint opacity), in the colors of
+       the profile's Material 3 scheme. */
+    border: 1px solid var(--color-menu-border);
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--md-secondary-container) 84%, transparent);
+    -webkit-backdrop-filter: var(--glass-filter);
+    backdrop-filter: var(--glass-filter);
+    color: var(--md-on-secondary-container);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      border-radius var(--dur-medium) var(--ease-spring),
+      transform var(--dur-medium) var(--ease-spring);
+  }
+  .dock__btn:first-child {
+    border-radius: 30px 8px 8px 30px;
+  }
+  .dock__btn:last-child {
+    border-radius: 8px 30px 30px 8px;
+  }
+  .dock__btn:only-child {
+    border-radius: 30px;
+  }
+  /* Pressed: the segment rounds off completely. */
+  .dock__btn:active {
+    border-radius: 30px;
+  }
+  .dock__btn--main {
+    flex: 1;
+    background: color-mix(in srgb, var(--md-primary-container) 84%, transparent);
+    color: var(--md-on-primary-container);
+  }
+  .dock__btn .material-icon,
+  .dock__btn svg {
+    font-size: 1.5em;
+    transition: transform var(--dur-medium) var(--ease-spring);
+  }
+  .dock__btn--back:hover .material-icon {
+    transform: translateX(-3px);
   }
 }
 
@@ -1481,21 +1577,11 @@ em {
 /* Leaving: the captured page shows only what the thumbnail has. The photo keeps its scale. */
 .is-leaving .appbar,
 .is-leaving .fab,
+.is-leaving .dock,
 .is-leaving .detail__media .pill {
   opacity: 0 !important;
   animation: none !important;
   transition: none !important;
-}
-/* The Funamujer header animates itself; keep its snapshot live instead of crossfading. */
-::view-transition-group(site-header) {
-  animation: none;
-  z-index: 100;
-}
-::view-transition-old(site-header) {
-  display: none;
-}
-::view-transition-new(site-header) {
-  animation: none;
 }
 
 /* ---------- About + footer ---------- */
